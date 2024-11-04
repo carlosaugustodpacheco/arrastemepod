@@ -83,5 +83,4 @@ document.getElementById('nextBtn').addEventListener('click', () => {
     }
 });
 
-// Chama a função para buscar os episódios ao carregar a página
-fetch
+// Chama a função para buscar
