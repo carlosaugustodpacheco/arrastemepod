@@ -44,22 +44,43 @@
     <!-- Episódios Recentes -->
     <section class="episodios">
         <h2>Últimos Episódios</h2>
-        
-        <!-- Exemplo de um episódio com link para Spotify -->
-        <div class="episodio">
-            <div class="imagem-episodio">
-                <img src="episodio1.jpg" alt="Imagem do episódio">
-            </div>
-            <div class="info-episodio">
-                <h3><a href="https://open.spotify.com/episode/ID_DO_EPISODIO" target="_blank">Título do Episódio | Número</a></h3>
-                <p>Descrição breve do episódio...</p>
-                <small>Data de lançamento</small>
-            </div>
-        </div>
-
-        <!-- Repita para outros episódios -->
-        
+        <div id="episodes" class="episodios-container"></div> <!-- Container para os episódios -->
     </section>
+
+    <script>
+        const rssUrl = 'https://anchor.fm/s/da7e6a28/podcast/rss';
+
+        async function fetchEpisodes() {
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+            const data = await response.json();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+            const items = xmlDoc.getElementsByTagName('item');
+            const episodesContainer = document.getElementById('episodes');
+
+            for (let i = 0; i < Math.min(items.length, 6); i++) { // Limitar a 6 episódios
+                const title = items[i].getElementsByTagName('title')[0].textContent;
+                const link = items[i].getElementsByTagName('link')[0].textContent;
+                const description = items[i].getElementsByTagName('description')[0].textContent;
+                const imageUrl = items[i].getElementsByTagName('itunes:image')[0].getAttribute('href');
+
+                const episodeDiv = document.createElement('div');
+                episodeDiv.classList.add('episodio');
+                episodeDiv.innerHTML = `
+                    <div class="imagem-episodio">
+                        <img src="${imageUrl}" alt="${title}">
+                    </div>
+                    <div class="info-episodio">
+                        <h3><a href="${link}" target="_blank">${title}</a></h3>
+                        <p>${description}</p>
+                    </div>
+                `;
+                episodesContainer.appendChild(episodeDiv);
+            }
+        }
+
+        fetchEpisodes();
+    </script>
 
 </body>
 </html>
