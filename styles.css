@@ -71,67 +71,32 @@ header nav a {
 /* Episódios */
 .episodios {
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.episodios .navegacao {
+    flex: 0 0 50px;
 }
 
 .episodios-container {
     display: flex;
-    flex-direction: column; /* Alinha os episódios verticalmente */
+    overflow: hidden;
+    width: calc(100% - 100px); /* Ajusta a largura para incluir as setas */
+}
+
+.episodios-row {
+    display: flex;
+    transition: transform 0.3s ease;
 }
 
 .episodios .episodio {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    background: #fff;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin: 0 10px;
 }
 
-.episodios .imagem-episodio img {
-    width: 100px;
-    height: 100px;
-    margin-right: 15px;
-}
-
-.episodios .info-episodio h3 {
-    margin-bottom: 5px;
-}
-
-.episodios .info-episodio p {
-    font-size: 14px;
-    color: #666;
-    overflow: hidden; /* Garante que o texto não exceda o espaço */
-    display: -webkit-box; /* Usado para criar um bloco flexível */
-    -webkit-line-clamp: 3; /* Limita a 3 linhas */
-    -webkit-box-orient: vertical; /* Alinha o texto verticalmente */
-}
-
-.episodios .info-episodio small {
-    display: block;
-    margin-top: 5px;
-    font-size: 12px;
-    color: #aaa;
-}
-
-/* Navegação */
-.navegacao {
-    display: flex;
-    justify-content: space-between; /* Para alinhar os botões nos extremos */
-    margin: 20px 0; /* Espaçamento acima e abaixo */
-    align-items: center; /* Para alinhar verticalmente os itens */
-}
-
-.navegacao button {
-    background-color: #000;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 18px;
-    width: 50px; /* Define uma largura fixa para os botões */
-}
-
-.navegacao button:hover {
-    background-color: #555;
+.episodios .episodio iframe {
+    width: 300px; /* Largura do embed */
+    height: 380px; /* Altura do embed */
+    border: none; /* Remove borda padrão */
 }
