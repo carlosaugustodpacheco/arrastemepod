@@ -73,6 +73,11 @@ header nav a {
     padding: 20px;
 }
 
+.episodios-container {
+    display: flex;
+    flex-direction: column; /* Alinha os episódios verticalmente */
+}
+
 .episodios .episodio {
     display: flex;
     align-items: flex-start;
@@ -94,13 +99,12 @@ header nav a {
 }
 
 .episodios .info-episodio p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* Limitar a 3 linhas */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Adiciona '...' no final se o texto for muito longo */
-    margin: 0; /* Remove margens */
-    color: #666; /* Cor do texto */
+    font-size: 14px;
+    color: #666;
+    overflow: hidden; /* Garante que o texto não exceda o espaço */
+    display: -webkit-box; /* Usado para criar um bloco flexível */
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical; /* Alinha o texto verticalmente */
 }
 
 .episodios .info-episodio small {
@@ -113,8 +117,9 @@ header nav a {
 /* Navegação */
 .navegacao {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-between; /* Para alinhar os botões nos extremos */
+    margin: 20px 0; /* Espaçamento acima e abaixo */
+    align-items: center; /* Para alinhar verticalmente os itens */
 }
 
 .navegacao button {
@@ -123,8 +128,8 @@ header nav a {
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    margin: 0 10px;
     font-size: 18px;
+    width: 50px; /* Define uma largura fixa para os botões */
 }
 
 .navegacao button:hover {
