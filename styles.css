@@ -118,7 +118,7 @@ header nav a {
 /* Navegação */
 .navegacao {
     display: flex;
-    justify-content: center; /* Centraliza os botões de navegação */
+    justify-content: space-between; /* Espaça os botões nas extremidades */
     margin: 20px 0; /* Espaçamento acima e abaixo */
 }
 
@@ -129,7 +129,6 @@ header nav a {
     padding: 10px 15px;
     cursor: pointer;
     font-size: 18px;
-    margin: 0 10px; /* Espaçamento horizontal entre os botões */
 }
 
 .navegacao button:hover {
