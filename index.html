@@ -48,44 +48,45 @@
     </section>
 
     <script>
-        const rssUrl = 'https://anchor.fm/s/da7e6a28/podcast/rss';
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy
+const rssUrl = 'https://anchor.fm/s/da7e6a28/podcast/rss';
+const proxyUrl = 'https://thingproxy.freeboard.io/fetch/'; // Novo Proxy
 
-        async function fetchEpisodes() {
-            try {
-                const response = await fetch(`${proxyUrl}${encodeURIComponent(rssUrl)}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(data, 'text/xml');
-                const items = xmlDoc.getElementsByTagName('item');
-                const episodesContainer = document.getElementById('episodes');
+async function fetchEpisodes() {
+    try {
+        const response = await fetch(`${proxyUrl}${encodeURIComponent(rssUrl)}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, 'text/xml');
+        const items = xmlDoc.getElementsByTagName('item');
+        const episodesContainer = document.getElementById('episodes');
 
-                for (let i = 0; i < Math.min(items.length, 6); i++) { // Limitar a 6 episódios
-                    const title = items[i].getElementsByTagName('title')[0].textContent;
-                    const link = items[i].getElementsByTagName('link')[0].textContent;
-                    const description = items[i].getElementsByTagName('description')[0].textContent;
-                    const imageUrl = items[i].getElementsByTagName('itunes:image')[0].getAttribute('href');
+        for (let i = 0; i < Math.min(items.length, 6); i++) { // Limitar a 6 episódios
+            const title = items[i].getElementsByTagName('title')[0].textContent;
+            const link = items[i].getElementsByTagName('link')[0].textContent;
+            const description = items[i].getElementsByTagName('description')[0].textContent;
+            const imageUrl = items[i].getElementsByTagName('itunes:image')[0].getAttribute('href');
 
-                    const episodeDiv = document.createElement('div');
-                    episodeDiv.classList.add('episodio');
-                    episodeDiv.innerHTML = `
-                        <div class="imagem-episodio">
-                            <img src="${imageUrl}" alt="${title}">
-                        </div>
-                        <div class="info-episodio">
-                            <h3><a href="${link}" target="_blank">${title}</a></h3>
-                            <p>${description}</p>
-                        </div>
-                    `;
-                    episodesContainer.appendChild(episodeDiv);
-                }
-            } catch (error) {
-                console.error('Error fetching the RSS feed:', error);
-            }
+            const episodeDiv = document.createElement('div');
+            episodeDiv.classList.add('episodio');
+            episodeDiv.innerHTML = `
+                <div class="imagem-episodio">
+                    <img src="${imageUrl}" alt="${title}">
+                </div>
+                <div class="info-episodio">
+                    <h3><a href="${link}" target="_blank">${title}</a></h3>
+                    <p>${description}</p>
+                </div>
+            `;
+            episodesContainer.appendChild(episodeDiv);
         }
+    } catch (error) {
+        console.error('Error fetching the RSS feed:', error);
+    }
+}
 
-        fetchEpisodes();
+fetchEpisodes();
+
     </script>
 
 </body>
