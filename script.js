@@ -6,10 +6,10 @@ let episodes = []; // Armazena os episódios
 // Função para buscar os episódios
 async function fetchEpisodes() {
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/${encodeURIComponent(rssUrl)}`);
-        const data = await response.text();
+        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+        const data = await response.json();
         const parser = new DOMParser();
-        const xml = parser.parseFromString(data, 'text/xml');
+        const xml = parser.parseFromString(data.contents, 'text/xml');
         const items = xml.getElementsByTagName('item');
 
         // Loop através dos itens e cria um objeto para cada episódio
@@ -83,4 +83,5 @@ document.getElementById('nextBtn').addEventListener('click', () => {
     }
 });
 
-// Chama a função para buscar
+// Inicia a busca pelos episódios ao carregar a página
+fetchEpisodes();
