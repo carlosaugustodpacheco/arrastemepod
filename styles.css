@@ -74,18 +74,19 @@ header nav a {
 }
 
 .episodios-container {
-    display: flex;
-    flex-direction: column; /* Alinha os episódios verticalmente */
+    display: flex; /* Muda para flexbox para alinhar os episódios horizontalmente */
+    overflow: hidden; /* Esconde episódios fora da visualização */
 }
 
 .episodios .episodio {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-right: 20px; /* Espaço entre os episódios */
     background: #fff;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    flex: 0 0 30%; /* Cada episódio ocupa 30% do espaço */
 }
 
 .episodios .imagem-episodio img {
@@ -117,9 +118,8 @@ header nav a {
 /* Navegação */
 .navegacao {
     display: flex;
-    justify-content: space-between; /* Para alinhar os botões nos extremos */
+    justify-content: center; /* Centraliza os botões de navegação */
     margin: 20px 0; /* Espaçamento acima e abaixo */
-    align-items: center; /* Para alinhar verticalmente os itens */
 }
 
 .navegacao button {
@@ -129,7 +129,7 @@ header nav a {
     padding: 10px 15px;
     cursor: pointer;
     font-size: 18px;
-    width: 50px; /* Define uma largura fixa para os botões */
+    margin: 0 10px; /* Espaçamento horizontal entre os botões */
 }
 
 .navegacao button:hover {

@@ -79,9 +79,4 @@ document.getElementById('prevBtn').addEventListener('click', () => {
 document.getElementById('nextBtn').addEventListener('click', () => {
     if (currentIndex + episodesPerPage < episodes.length) {
         currentIndex += episodesPerPage; // Aumenta o índice
-        displayEpisodes(); // Atualiza a exibição
-    }
-});
-
-// Inicia a busca pelos episódios ao carregar a página
-fetchEpisodes();
+        displayEpisodes(); //
